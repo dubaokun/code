@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++11 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILE -O3 -g  -rdynamic CMakeFiles/Safe_queue_test.dir/src/main.cpp.o  -o Safe_queue_test -lpthread 
