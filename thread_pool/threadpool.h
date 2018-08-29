@@ -36,17 +36,17 @@ public:
 	CUWorkerThread(THREAD_PTR func);
 	virtual ~CUWorkerThread(void);
 
-	CJob*	GetJob()		{ return m_Job;}
-	CUThreadPool* GetThreadPool()	{ return m_ThreadPool;}
+	void	SetJob(CJob* job) {m_Job = job;}
+	CJob*	GetJob() {return m_Job;}
+	CUThreadPool* GetThreadPool()	{return m_ThreadPool;}
+	void	SetThreadPool(CUThreadPool* threadpool){m_ThreadPool = threadpool;}
 
 	void    Signal();
 	void	Wait();	
 	bool	IsEnd();
-	static  void* work_thread(void*);
-
-	void	SetJob(CJob* job){m_Job = job;}
-	void	SetThreadPool(CUThreadPool* threadpool){m_ThreadPool = threadpool;}
 	bool	End() {m_IsEnd = true;}
+
+	static  void* work_thread(void*);
 
 private:
 	CCondition        m_JobCond;
@@ -55,7 +55,7 @@ private:
 	bool	          m_IsEnd;
 };
 
-
+/*************************************class thread pool****************************/
 class CUThreadPool
 {
 public:
