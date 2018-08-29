@@ -22,8 +22,8 @@ LIBSONAME = libthread.so
 LIBOBJSHARED = libthread.so.0
 LIBOBJSTATIC = libthread.a
 
-CORESOURCE = ./Thread.cpp \
-	 ./ThreadPool.cpp
+CORESOURCE = ./thread.cpp \
+	 ./threadPool.cpp
 	
 
 
