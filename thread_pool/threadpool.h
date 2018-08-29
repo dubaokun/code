@@ -1,9 +1,16 @@
+/*
+ * Brief: thread pool 
+ * Author: Sam
+ * Data: 2018/08/23
+ */
+
 #ifndef __THREAD_POOL_H__
 #define __THREAD_POOL_H__
 
 #include "thread.h"
 #include <vector>
 
+/*************************************class job**********************************/
 class CJob
 {
 public:
@@ -11,6 +18,7 @@ public:
 
 };
 
+/************************************class job worker****************************/
 class CJobWorker
 {
 public:
@@ -18,6 +26,7 @@ public:
 	virtual void DoJob(CJob*) = 0;
 };
 
+/********************************class worker thread*****************************/
 class CUThreadPool;
 class CUWorkerThread : public Threads
 {
@@ -40,7 +49,6 @@ public:
 	bool	End() {m_IsEnd = true;}
 
 private:
-
 	CCondition        m_JobCond;
 	CUThreadPool      *m_ThreadPool;
 	CJob              *m_Job;

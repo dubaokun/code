@@ -43,6 +43,7 @@ CCondition::~CCondition()
 {
 	Signal();
 }
+
 void CCondition::Init()
 {
 	pthread_mutex_init(&m_mutex, NULL);
@@ -63,17 +64,33 @@ void CCondition::Signal()
 	pthread_mutex_unlock(&m_mutex);
 }
 
+void CCondition::Init()
+{
+	pthread_mutex_init(&m_mutex, NULL);
+	pthread_cond_init(&m_cond, NULL);
+}
+
+void CCondition::CleanUp()
+{
+	pthread_mutex_destroy(&m_mutex);
+	pthread_cond_destroy(&
+}
+
+/*******************************class Threads*****************************/
 Threads::Threads(THREAD_PTR func)
 {
+	m_threadname = "";
+	m_err_code = 0;
+	m_thread_id = 0;   
 	m_workfunc = func;
-	m_ErrCode = 0;
-	m_ThreadID = 0;   
 }
+
 Threads::Threads()
 {
+	m_thread_name = "";
+	m_err_code = 0;
+	m_thread_id = 0;   
 	m_workfunc = NULL;
-	m_ErrCode = 0;
-	m_ThreadID = 0;   
 }
 
 Threads::~Threads(void)
@@ -83,10 +100,10 @@ Threads::~Threads(void)
 
 bool Threads::SetFunc(THREAD_PTR func)
 {
-	if (func == NULL)
-	{
+	if (NULL == func) {
 		return false;
 	}
+
 	m_workfunc = func;
 	return true;
 }
@@ -96,15 +113,13 @@ bool Threads::Start()
 	pthread_attr_t attr;
 	pthread_attr_init(&attr);
 	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
-	int nret = pthread_create(&m_ThreadID, &attr,(THREAD_PTR)m_workfunc, (void*)this);
+	int nret = pthread_create(&m_thread_id, &attr,(THREAD_PTR)m_workfunc, (void*)this);
 	pthread_attr_destroy(&attr);
 
-	if (nret)
-	{
+	if (nret) {
 		printf("Error creating thread : %d\n",  nret);
 		return false;
-	}else
-	{
+	} else {
 		return true;
 	}
 }
