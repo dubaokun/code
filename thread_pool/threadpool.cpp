@@ -89,7 +89,7 @@ CUThreadPool::~CUThreadPool()
 bool CUThreadPool::Start(CJobWorker * pt)
 {
 	assert(pt != NULL);
-	m_poolthread = pt;
+	m_JobWorker = pt;
 	for(unsigned int i=0; i<m_InitNum; i++)
 	{
 		AddThread();

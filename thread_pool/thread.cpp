@@ -42,12 +42,7 @@ CCondition::CCondition()
 CCondition::~CCondition()
 {
 	Signal();
-}
-
-void CCondition::Init()
-{
-	pthread_mutex_init(&m_mutex, NULL);
-	pthread_cond_init(&m_cond, NULL);
+	CleanUp();
 }
 
 void CCondition::Wait()
@@ -73,13 +68,13 @@ void CCondition::Init()
 void CCondition::CleanUp()
 {
 	pthread_mutex_destroy(&m_mutex);
-	pthread_cond_destroy(&
+	pthread_cond_destroy(&m_cond);
 }
 
 /*******************************class Threads*****************************/
 Threads::Threads(THREAD_PTR func)
 {
-	m_threadname = "";
+	m_thread_name = "";
 	m_err_code = 0;
 	m_thread_id = 0;   
 	m_workfunc = func;
@@ -126,7 +121,7 @@ bool Threads::Start()
 
 void Threads::Join()
 {
-	pthread_join(m_ThreadID, NULL);
+	pthread_join(m_thread_id, NULL);
 }
 
 void Threads::Exit()

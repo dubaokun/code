@@ -64,18 +64,18 @@ public:
 	void     Join(void);
 	void     Exit(void);
 
-	const char* GetName()const {return m_threadname.c_str();};
-	void SetName(const char*name) {m_threadname = name;};
-	int      GetLastError(void) {return m_ErrCode;}
-	void     SetErrcode(int errcode) {m_ErrCode = errcode;}
-	int      GetThreadID(void) {return m_ThreadID;}
+	const char* GetName()const {return m_thread_name.c_str();};
+	void SetName(const char*name) {m_thread_name = name;};
+	int      GetLastError(void) {return m_err_code;}
+	void     SetErrcode(int errcode) {m_err_code = errcode;}
+	int      GetThreadID(void) {return m_thread_id;}
 
 	static void wait_multiple_all_object(Threads **threads, int size);
 	static void* workthread(void*);
 
 protected:
     std::string     m_thread_name;
-	int             m_errr_code;
+	int             m_err_code;
 	pthread_t       m_thread_id;
     THREAD_PTR      m_workfunc;
 };

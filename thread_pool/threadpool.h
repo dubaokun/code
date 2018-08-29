@@ -64,10 +64,10 @@ public:
 	virtual ~CUThreadPool(void);
 
 private:
-	unsigned int m_InitNum;  //Normal thread num;
+	unsigned int m_InitNum;						//Normal thread num;
 	unsigned int m_ThreadNum;
 	unsigned int m_WaitNum;
-	CJobWorker * m_poolthread;
+	CJobWorker * m_JobWorker;
 	CMutex	     m_lock;
 	std::vector <CJob*>      m_JobList;
 	std::vector <Threads*>   m_WaitThreadList;
@@ -86,7 +86,7 @@ public:
 	void    InsertJob(CJob* job);
 	void    ApendJob(CJob* job);
 	void    AppendToWaitList(Threads* jobthread);
-	CJobWorker *GetJobWorker(){return m_poolthread;}
+	CJobWorker *GetJobWorker(){return m_JobWorker;}
 };
 
 /*
