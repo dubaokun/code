@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "Thread.h"
+#include "thread.h"
 
 // class mutex
 CMutex::CMutex()

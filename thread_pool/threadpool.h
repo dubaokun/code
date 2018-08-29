@@ -1,7 +1,7 @@
 #ifndef __THREAD_POOL_H__
 #define __THREAD_POOL_H__
 
-#include "Thread.h"
+#include "thread.h"
 #include <vector>
 
 class CJob
@@ -17,6 +17,36 @@ public:
 	virtual ~CJobWorker(){}
 	virtual void DoJob(CJob*) = 0;
 };
+
+class CUThreadPool;
+class CUWorkerThread : public Threads
+{
+public:
+
+	CUWorkerThread(void);
+	CUWorkerThread(THREAD_PTR func);
+	virtual ~CUWorkerThread(void);
+
+	CJob*	GetJob()		{ return m_Job;}
+	CUThreadPool* GetThreadPool()	{ return m_ThreadPool;}
+
+	void    Signal();
+	void	Wait();	
+	bool	IsEnd();
+	static  void* work_thread(void*);
+
+	void	SetJob(CJob* job){m_Job = job;}
+	void	SetThreadPool(CUThreadPool* threadpool){m_ThreadPool = threadpool;}
+	bool	End() {m_IsEnd = true;}
+
+private:
+
+	CCondition        m_JobCond;
+	CUThreadPool      *m_ThreadPool;
+	CJob              *m_Job;
+	bool	          m_IsEnd;
+};
+
 
 class CUThreadPool
 {
@@ -51,6 +81,7 @@ public:
 	CJobWorker *GetJobWorker(){return m_poolthread;}
 };
 
+/*
 class CUWorkerThread : public Threads
 {
 public:
@@ -77,6 +108,6 @@ private:
 	CUThreadPool      *m_ThreadPool;
 	CJob              *m_Job;
 	bool	          m_IsEnd;
-};
+};*/
 
 #endif

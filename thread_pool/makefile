@@ -23,7 +23,7 @@ LIBOBJSHARED = libthread.so.0
 LIBOBJSTATIC = libthread.a
 
 CORESOURCE = ./thread.cpp \
-	 ./threadPool.cpp
+	 ./threadpool.cpp
 	
 
 

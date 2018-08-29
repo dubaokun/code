@@ -1,4 +1,4 @@
-#include "ThreadPool.h"
+#include "threadpool.h"
 #include <assert.h>
 
 CUWorkerThread::CUWorkerThread(THREAD_PTR func):Threads(func)
