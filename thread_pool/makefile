@@ -1,5 +1,5 @@
-CPPFLAGS = -DENABLE_BINRELOC -pthread -W -g -D_UNIX -D_REENTRANT $(INCLUDES) 
-LDFLAGS = -pthread -g
+CPPFLAGS = -DENABLE_BINRELOC -pthread -W -g -D_UNIX -D_REENTRANT -D_KKK $(INCLUDES) 
+LDFLAGS = -pthread -g 
 LDSOFLAGS = -shared -Wl,-soname
 
 #CPPFLAGS = -static -pthread -D__cplusplus -D_UNIX -D_LINUX_STATIC -D_REENTRANT $(INCLUDES)

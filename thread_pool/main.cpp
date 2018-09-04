@@ -1,6 +1,7 @@
 #include "threadpool.h"
 #include <unistd.h>
 #include <stdio.h>
+#include <iostream>
 
 using namespace std;
 
@@ -26,6 +27,14 @@ public:
 
 int main()
 {
+#ifdef _KKK
+    std::cout << "make effict" << std::endl;
+    sleep(2);
+#else 
+    std::cout << "do not make effict" << std::endl;
+    sleep(2);
+#endif
+
         CUThreadPool pool(10);
         EXJobWorker *pt = new EXJobWorker;
         pool.Start(pt);
