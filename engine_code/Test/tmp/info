@@ -1,0 +1,125 @@
+server_main.cpp					main函数
+master_server.cpp				run函数
+profile_manager.cpp			
+
+
+==============================
+四.如何编译searcher_server
+libSearcherRank.so这个由排序算法组负责开发维护，搜索引擎组一般不涉及，此处只讲述searcher_server的编译流程
+
+①clone主库代码
+	git clone http://source.jd.com/app/jd_search_v5.git
+
+②在主库代码目录，下载两个子库
+	git submodule init
+	git submodule update
+
+③进入jd_search_v5/src目录
+编译debug版本的searcher_server
+	mkdir -p debug 
+	cd jd_search_v5/src/debug/
+	dmake ..
+	make -j4 searcher_server
+编译release版的searcher_server
+	mkdir -p release
+	cd jd_search_v5/src/release/
+	rmake ..
+	make -j4 searcher_server
+④编译完成后，在编译目录下的seacher中可以找到新编译出的searcher_server
+
+searcher模块的代码编译
+	git clone
+	git submodule init
+	git submodule update
+	
+	切换分支 disk_index/m4
+
+	添加两个第三方库jd_search_common_3rdparty和jd_search_rank_interface
+	分别将两个第三方库check到master分支并pull最新的修改
+	make第三方依赖
+	jd_search_common_3rdparty 拉取 disk_index_3rd
+	jd_search_rank_interface	拉取 master
+	
+	git pull origin master
+
+	新建编译输出目录output，并在output里编译
+	cmake -DCMAKE_BUILD_TYPE=Release ..
+	make searcher_server -j 10
+	
+	disk_index_3rd
+	
+	10.196.30.167:
+	/export/App/jd_search/searcher/server/engine_conf/searcher
+	disk_index.ini   server_config.ini  server.ini
+	
+	// cache 的比例  
+	disk_index.ini	
+									server.profile_unreplace_cache_aux_load_ratio								// 不可替换比例
+									server.profile_unreplace_cache_load_ratio										// 不可替换比例
+									server.profile_cache_warmup_load_ratio											// main profile load ratio（预热比例）
+									server.profile_cache_load_ratio															// cache比例
+									server.profile_cache_warmup_valid														// 是否预热 0 不预热； 1 预热；
+									server.profile_load_mode																		// 加载模式 2 cache；1 disk；0 全内存
+									server.profile_cache_impl																		// 0 lruthreadcache 
+	
+	·
+	提交代码：
+		1 git add
+		2 git commit
+		3 git pull --rebase
+		4 git push
+
+1、 数据：
+
+>>>测试机：
+	ssh admin@172.18.179.141
+	ssh admin@172.18.179.98
+	ssh admin@172.20.167.113
+	跳转机 dubaokun@10.182.65.201
+	文斌机器： 
+		10.196.30.167:		NmZlNjM4MTMxNzJjNzJlMzVhNjFkNmYz
+		/export/App/jd_search/searcher/server/engine_conf/searcher
+		disk_index.ini   server_config.ini  server.ini
+		
+		server.profile_load_mode 1 全磁盘模式
+	
+	+ekUGUpR!w7ub5?rup
+	
+	
+
+清理pagechae
+	清理pagecache（页面缓存）	echo 1 > /proc/sys/vm/drop_caches
+	清理dentries（目录缓存）和inodes	echo 2 > /proc/sys/vm/drop_caches
+	清理pagecache、dentries和inodes	echo 3 > /proc/sys/vm/drop_caches
+	
+	
+>>>数据文件：
+	/export/Data/jd_search/searcher/data/main/profile/[3c, ribai, …]/[sku, spu]/[profile.ext.*, profile.main.*]
+
+	[3c, ribai, …]：6个品类分别存放；
+	[sku, spu]：sku为单个商品唯一id，spu为单类商品唯一id，一类商品的相同信息放在spu目录下的数据文件中，单个商品独有信息放在sku下，取完整信息需要进行拼接
+	[profile.main.*, profile.ext.*]：主表和辅表，定长部分在主表中，变长部分在辅表中
+
+>>>数据结构文件：
+	/export/Data/jd_search/searcher/data/main/index.ini 每个字段的类型以及内存占用信息
+	/export/Data/jd_search/searcher/data/main/profile/global.infos每个品类的表字段名
+
+ 
+
+2、 目标程序
+
+>>>可执行文件目录：
+
+/export/App/jd_search/searcher/server/bin/
+
+>>>配置文件目录：
+
+/export/App/jd_search/searcher/server/conf/*
+
+
+4 日志
+/export/Logs/jd_search/searcher/searcher_server_20180502_151925.log
+
+3 diff
+
+http://arena.search.jd.com/rankdiff/?key=%E8%A1%A3%E6%9F%9C%20%E7%AE%80%E6%98%93%20%E7%BB%84%E8%A3%85&ip_left=10.196.30.167:12000&ip_right=172.20.121.99:12000&route_left=m0s0&route_right=m0s0&usecache_left=no&usecache_right=no&filt_type=productext2,b15v0&page=1&pagesize=20&brand_col=yes&color_col=yes&ext_attr=yes&ext_attr_sort=yes&merge_sku=yes&multi_select=yes&multi_suppliers=yes&price_col=yes&qp_disable=no&size_col=yes&client=1431078397301&aging_col=yes&area_ids=1%2C72%2C4137%2C0&article_tab=yes&delivertime=yes&exist_col=yes&new_brand_val=yes&shoptab_valid=yes&enc_url_gbk=yes&user_pin=jd_79d7890dca2eb&openid=oTGnpnILSx0-JDfsXZpEkAMktD6A&visitkey=20239781503104632&&forcebot=66&debug=yes&default=no
