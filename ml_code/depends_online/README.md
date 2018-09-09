@@ -91,3 +91,5 @@
 	-- python setup.py install 
 
 
+  - matplotlib
+	-- https:/sourceforge.net/projects/matplotlib/files/matplotlib/matplotlib-1.5.3/matplotlib-1.5.3.tar.gz/download
