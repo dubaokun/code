@@ -25,6 +25,8 @@ bool CUWorkerThread::IsEnd()
 	return m_IsEnd;
 }
 
+// the workthread have two types: runing thread and waiting thread, 
+// first SetJob then to dealwith the job
 void* CUWorkerThread::work_thread(void* para)
 {
 	CUWorkerThread *pWorkThread = static_cast<CUWorkerThread*>(para);

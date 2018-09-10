@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "thread.h"
 
-// class mutex
+// class mutex function 
 CMutex::CMutex()
 {
 	Init();
@@ -33,7 +33,7 @@ bool CMutex::Release()
 	return true;
 }
 
-// class condition
+// class condition fucntion
 CCondition::CCondition()
 {
 	Init();
@@ -71,7 +71,7 @@ void CCondition::CleanUp()
 	pthread_cond_destroy(&m_cond);
 }
 
-/*******************************class Threads*****************************/
+// class threads which will is the parent class
 Threads::Threads(THREAD_PTR func)
 {
 	m_thread_name = "";

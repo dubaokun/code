@@ -10,7 +10,8 @@
 #include "thread.h"
 #include <vector>
 
-/*************************************class job**********************************/
+// job info, which will bu transport by queue
+// should be inherit by subclass
 class CJob
 {
 public:
@@ -18,7 +19,7 @@ public:
 
 };
 
-/************************************class job worker****************************/
+// how to deal job, should be inherit by subclass
 class CJobWorker
 {
 public:
@@ -26,7 +27,7 @@ public:
 	virtual void DoJob(CJob*) = 0;
 };
 
-/********************************class worker thread*****************************/
+// thread class which is inherited by the class Threads
 class CUThreadPool;
 class CUWorkerThread : public Threads
 {
@@ -55,7 +56,7 @@ private:
 	bool	          m_IsEnd;
 };
 
-/*************************************class thread pool****************************/
+// the threadpool class: which has many thread to work, many job to deal, jodwork class
 class CUThreadPool
 {
 public:

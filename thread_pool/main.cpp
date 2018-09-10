@@ -5,7 +5,7 @@
 
 using namespace std;
 
-
+// inherit from CJob, which is the job info
 class TestJob: public CJob
 {
 public:
@@ -13,6 +13,7 @@ public:
         string name;
 };
 
+// inherit from CJobWorker, which can deal with the CJob 
 class EXJobWorker : public CJobWorker
 {
 public:
@@ -28,10 +29,10 @@ public:
 int main()
 {
 #ifdef _KKK
-    std::cout << "make effict" << std::endl;
+    std::cout << "define macro _KKK" << std::endl;
     sleep(2);
 #else 
-    std::cout << "do not make effict" << std::endl;
+    std::cout << "no define macro _KKK" << std::endl;
     sleep(2);
 #endif
 

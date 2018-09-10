@@ -11,7 +11,8 @@
 #include <iostream>
 #include <assert.h>
 
-/************************mutex*****************************/
+// the mutex to protect the res who will 
+// be shared by multi threads
 class CMutex
 {
 public:
@@ -29,7 +30,8 @@ private:
 };
 
 
-/**********************cond********************************/
+// the mutex and cond which will be use
+// by threading signal and wait
 class CCondition
 {
 public:
@@ -47,10 +49,10 @@ private:
 	pthread_mutex_t m_mutex;
 };
 
-
+// the function of the thread
 typedef void *(*THREAD_PTR)(void *);
 
-/************************thread****************************/
+// the threads parent class, subclass will be inherit from this
 class  Threads
 {
 public:
