@@ -91,5 +91,11 @@
 	-- python setup.py install 
 
 
+  - package
+	-- http://download.savannah.gnu.org/releases/freetype/freetype-2.4.0.tar.gz
+	
+
   - matplotlib
 	-- https:/sourceforge.net/projects/matplotlib/files/matplotlib/matplotlib-1.5.3/matplotlib-1.5.3.tar.gz/download
+
+
