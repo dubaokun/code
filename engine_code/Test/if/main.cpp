@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int main(int argc, char ** argv)
+void Test1()
 {
     int a = 0;
     if (0 == a){
@@ -14,5 +14,25 @@ int main(int argc, char ** argv)
     } else {
         cout << "a=2" << endl;
     }
+
+}
+
+void Test2()
+{
+    int a = 100;
+    if (a > 0) {
+        cout << "a > 0" << endl;
+    } else if (a > 10) {
+        cout << "a > 10" << endl;
+    } else {
+        cout << "a = 100" << endl;
+    }
+    
+    return;
+} 
+
+int main(int argc, char ** argv)
+{
+    Test2();
     return 0;
 }
