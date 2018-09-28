@@ -3,8 +3,22 @@
 
 using namespace std;
 
+void test() {
+    int count = 1 << 10;
+    cout << count << endl;
+
+    count = 1 << 20;
+    cout << count << endl;
+
+    count = 1 << 30;
+    cout << count << endl;
+}
+
 int main(int argc, char ** argv)
 {
+    test();
+    return 0;
+
     int pos = 1;
     pos <<= 1;
 
