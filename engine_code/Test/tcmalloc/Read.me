@@ -1,5 +1,41 @@
 内存泄漏检查
     env HEAPCHECK=normal ./test_tcmalloc.out
 
+# 2 安装使用
 
+## 2.1 相关软件下载
+    1)google-perftools：https://github.com/gperftools/gperftools/releases/download/gperftools-2.7/gperftools-2.7.tar.gz
+    2)libunwind：http://download.savannah.nongnu.org/releases/libunwind/libunwind-1.2.tar.gz
+    3)其次需要安装m4. autoconf, automake, libtool等工具；
+
+    可参考：http://blog.csdn.net/u011217649/article/details/77101377
+
+### 2.1.1 libunwind安装
+> 64位操作系统请先安装 libunwind库，32位操作系统不要安装。libunwind库为基于64位CPU和操作系统的程序提供了基本的堆栈辗转开解功能，其中包括用于输出堆栈跟踪的API、用于以编程方式辗转开解堆栈的API以及支持C++异常处理机制的API。
+
+```
+tar zxvf libunwind-1.1.tar.gz
+cd libunwind-1.1
+./configure --prefix=/usr/local
+make
+sudo make install
+```
+
+### 2.1.2 安装google-perftools
+> tcmalloc安装库信息。
+
+```
+tar zxvf gperftools-master.tar.gz
+cd gperftools-master
+./configure --prefix=/usr/local
+make
+sudo make install
+``` 
+
+### 2.1.3 动态库路径设置
+
+```
+vim /etc/ld.so.conf
+sudo ldconfig
+```
 
