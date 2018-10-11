@@ -1,3 +1,6 @@
+# 使用条件
+    - 需要是有序的，有序的查找可以使用二分查找；
+
 # 头文件
     > 头文件是algorithm.h，
     - ForwardIter lower_bound(ForwardIter first, ForwardIter last,const _Tp& val)算法返回一个非递减序列[first, last)中的第一个大于等于值val的位置。
