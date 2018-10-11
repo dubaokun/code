@@ -11,3 +11,25 @@
     - 本测试没有对pb进行修改操作（比如类型）
     - 本操作仅仅是追加项到pb，而且放在最后；
 
+
+# 基础
+
+```
+message Order
+{
+  int32 time = 1;
+  int32 userid = 2;
+  float price = 3;
+  string desc = 4;
+  string ext = 5;
+}
+```
+## 函数
+    - 设置函数：set_time();
+    - 获取函数：time();
+    - pb序列化：bool SerializeToString(string* output) const;
+    - pb反序列化：bool ParseFromString(const string& data);
+
+## 参考文档
+    > 序列化到字符串、文件中
+    - https://blog.csdn.net/sealyao/article/details/6940245 
