@@ -1,5 +1,9 @@
-内存泄漏检查
+# 内存泄漏检查
     env HEAPCHECK=normal ./test_tcmalloc.out
+
+# 1 为什么块 
+> 使用了thread cache，小块的内存分配都可以从cache中分配。多线程分配内存的情况下，可以减少锁竞争。
+> tcmalloc官方文档见：https://gperftools.github.io/gperftools/tcmalloc.html
 
 # 2 安装使用
 

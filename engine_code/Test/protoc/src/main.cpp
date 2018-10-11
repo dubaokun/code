@@ -18,7 +18,9 @@ int main(int argc, char ** argv)
     string sOrder;
     order.SerializeToString(&sOrder);
     
+    std::cout << "==================" << std::endl;
     std::cout << sOrder << std::endl;
+    std::cout << "==================" << std::endl;
 
     FILE * fp = fopen("./data", "w+");
     if (NULL == fp) {
