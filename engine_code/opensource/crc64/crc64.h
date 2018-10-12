@@ -1,8 +1,5 @@
 /*
  * crc64.h
- * Created on: 2012-12-31
- *      Author: yuanpeizhi
- * Modify by weilei: 2016-03-16
  */
 
 #ifndef UTIL_CRC64_H_
@@ -27,7 +24,6 @@ inline void crc64(const char*seq, unsigned int lg_seq, uint64_t *pFinalCrc)
 	static uint64_t CRCTable[256];
 
 	if (!init) {
-		init = true;
 		for (i = 0; i < 256; i++) {
 			part = i;
 			for (j = 0; j < 8; j++) {
@@ -38,6 +34,7 @@ inline void crc64(const char*seq, unsigned int lg_seq, uint64_t *pFinalCrc)
 			}
 			CRCTable[i] = part;
 		}
+		init = true;
 	}
 
 	while (lg_seq-- > 0)
