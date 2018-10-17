@@ -1,0 +1,10 @@
+diff -uNr t1/test1 t2/test1
+--- t1/test1	2018-10-17 11:21:31.517000000 +0800
++++ t2/test1	2018-10-17 10:55:52.948000000 +0800
+@@ -1,4 +1,4 @@
+-linussss
++linus
+ linux
+-linusssssss
++linus
+ linux
