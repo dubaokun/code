@@ -32,3 +32,6 @@
 *.out
 *.appe
 
+# file and folder
+google_testing/
+output/
