@@ -13,14 +13,16 @@
 #define OUT
 #endif
 
-void foo(const std::string &str) {}
-std::string a = "hello";
-std::string b = "world";
+static std::string a = "hello";
+const std::string b = "world";
 
-void test(IN const std::string& a, OUT std::string& b) {
-    //std::string b = a;
+void foo(const std::string &str) {}
+
+void test(IN const std::string& a, OUT std::string& b,
+        std::string& c, std::string& d) {
+    // std::string b = a;
     int aa = 1;
-    const long &bb = aa;
+    const long &bb = (long)aa;
     std::string sa = "aaa";
     const std::string& sb = sa;
 }
@@ -28,10 +30,18 @@ void test(IN const std::string& a, OUT std::string& b) {
 void test2() {
     using std::string;
     string a = "sas";
+}
+
+void test3(std::string * str) {
+  *str = "abcdef";
+}
 
 int main() {
     std::cout << "hello !" << std::endl;
     foo(a + b);
+    std::string str;
+    test3(&str);
+    std::cout << str << std::endl;
     return 0;
 }
 

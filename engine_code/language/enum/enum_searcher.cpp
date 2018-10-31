@@ -1,7 +1,8 @@
+#include <iostream>
+
+namespace profile{
     
-    
-    
- typedef enum {
+        typedef enum {
             UNKNOWN = 0,
             UINT8 = 1,
             INT8 = 2,
@@ -87,3 +88,10 @@
             {
                 enum { Val = BOOL};
             };
+
+        // int main
+        int main(int argc, char ** argv) {
+            return 0;
+        }
+
+}

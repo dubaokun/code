@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -31,8 +32,19 @@ void Test2()
     return;
 } 
 
+void Test3() {
+    vector<int> vec;
+    vec.push_back(1);
+    vec.push_back(2);
+
+    if (not vec.empty()) {
+        cout << "vec not empty!" << endl;
+    }
+}
+
 int main(int argc, char ** argv)
 {
     Test2();
+    Test3();
     return 0;
 }
