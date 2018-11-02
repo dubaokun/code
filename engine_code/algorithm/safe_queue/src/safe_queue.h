@@ -53,9 +53,8 @@ void ThreadSafeQueue<T>::Popup(T &value)
 template <typename T>
 bool ThreadSafeQueue<T>::Empty()
 {
-        std::lock_guard<std::mutex> lk(mut_);
-        return que_.empty();
+    std::lock_guard<std::mutex> lk(mut_);
+    return que_.empty();
 }
-
 
 #endif
