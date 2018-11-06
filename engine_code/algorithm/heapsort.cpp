@@ -1,15 +1,15 @@
-/*¶ÑÅÅĞò(´ó¶¥¶Ñ) 2011.9.14*/ 
+/*å †æ’åº(å¤§é¡¶å †) 2011.9.14*/ 
 
 #include <iostream>
 #include<algorithm>
 using namespace std;
 
-void HeapAdjust(int *a,int i,int size)  //µ÷Õû¶Ñ 
+void HeapAdjust(int *a,int i,int size)  //è°ƒæ•´å † 
 {
-    int lchild=2*i;       //iµÄ×óº¢×Ó½ÚµãĞòºÅ 
-    int rchild=2*i+1;     //iµÄÓÒº¢×Ó½ÚµãĞòºÅ 
-    int max=i;            //ÁÙÊ±±äÁ¿ 
-    if(i<=size/2)          //Èç¹ûiÊÇÒ¶½Úµã¾Í²»ÓÃ½øĞĞµ÷Õû 
+    int lchild=2*i;       //içš„å·¦å­©å­èŠ‚ç‚¹åºå· 
+    int rchild=2*i+1;     //içš„å³å­©å­èŠ‚ç‚¹åºå· 
+    int max=i;            //ä¸´æ—¶å˜é‡ 
+    if(i<=size/2)          //å¦‚æœiæ˜¯å¶èŠ‚ç‚¹å°±ä¸ç”¨è¿›è¡Œè°ƒæ•´ 
     {
         if(lchild<=size&&a[lchild]>a[max])
         {
@@ -22,30 +22,30 @@ void HeapAdjust(int *a,int i,int size)  //µ÷Õû¶Ñ
         if(max!=i)
         {
             swap(a[i],a[max]);
-            HeapAdjust(a,max,size);    //±ÜÃâµ÷ÕûÖ®ºóÒÔmaxÎª¸¸½ÚµãµÄ×ÓÊ÷²»ÊÇ¶Ñ 
+            HeapAdjust(a,max,size);    //é¿å…è°ƒæ•´ä¹‹åä»¥maxä¸ºçˆ¶èŠ‚ç‚¹çš„å­æ ‘ä¸æ˜¯å † 
         }
     }        
 }
 
-void BuildHeap(int *a,int size)    //½¨Á¢¶Ñ 
+void BuildHeap(int *a,int size)    //å»ºç«‹å † 
 {
     int i;
-    for(i=size/2;i>=1;i--)    //·ÇÒ¶½Úµã×î´óĞòºÅÖµÎªsize/2 
+    for(i=size/2;i>=1;i--)    //éå¶èŠ‚ç‚¹æœ€å¤§åºå·å€¼ä¸ºsize/2 
     {
         HeapAdjust(a,i,size);    
     }    
 } 
 
-void HeapSort(int *a,int size)    //¶ÑÅÅĞò 
+void HeapSort(int *a,int size)    //å †æ’åº 
 {
     int i;
     BuildHeap(a,size);
     for(i=size;i>=1;i--)
     {
         //cout<<a[1]<<" ";
-        swap(a[1],a[i]);           //½»»»¶Ñ¶¥ºÍ×îºóÒ»¸öÔªËØ£¬¼´Ã¿´Î½«Ê£ÓàÔªËØÖĞµÄ×î´óÕß·Åµ½×îºóÃæ 
-          //BuildHeap(a,i-1);        //½«ÓàÏÂÔªËØÖØĞÂ½¨Á¢Îª´ó¶¥¶Ñ 
-          HeapAdjust(a,1,i-1);      //ÖØĞÂµ÷Õû¶Ñ¶¥½Úµã³ÉÎª´ó¶¥¶Ñ
+        swap(a[1],a[i]);           //äº¤æ¢å †é¡¶å’Œæœ€åä¸€ä¸ªå…ƒç´ ï¼Œå³æ¯æ¬¡å°†å‰©ä½™å…ƒç´ ä¸­çš„æœ€å¤§è€…æ”¾åˆ°æœ€åé¢ 
+          //BuildHeap(a,i-1);        //å°†ä½™ä¸‹å…ƒç´ é‡æ–°å»ºç«‹ä¸ºå¤§é¡¶å † 
+          HeapAdjust(a,1,i-1);      //é‡æ–°è°ƒæ•´å †é¡¶èŠ‚ç‚¹æˆä¸ºå¤§é¡¶å †
     }
 } 
 
