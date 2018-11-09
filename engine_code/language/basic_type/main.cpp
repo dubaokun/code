@@ -43,7 +43,15 @@ void TestTl(T t) {
     std::cout << "========================" << std::endl;
 }
 
+void Test2() {
+    std::cout << uint16_t(-1) << std::endl;
+    std::cout << int16_t(-1) << std::endl;
+}
+
 int main(int argc, char ** argv) {
+
+    Test2();
+    return 0;
 
     unsigned i = 0;
     TestTl(i);
