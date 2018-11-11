@@ -17,6 +17,7 @@
 *.dylib
 *.dll
 core.*
+depends
 
 # Fortran module files
 *.mod
