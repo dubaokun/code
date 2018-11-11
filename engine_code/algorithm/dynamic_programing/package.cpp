@@ -12,7 +12,8 @@ const int N = 3;				// 物品个数
 const int W = 50;				// 背包的容量
  
 // 初始物品信息
-commodity goods[N+1]= {{0,0}, {60,10}, {100,20}, {120,30}};
+commodity goods[N + 1]= {{0, 0}, {120, 30}, {100, 200}, {60, 10}};
+//commodity goods[N + 1]= {{0, 0}, {60, 10}, {100, 20}, {120, 30}};
 int select[N+1][W+1];
  
 int max_value();
@@ -26,7 +27,7 @@ int main()
     // 输出所选择的物品列表：
     for (int i=N; i>=1; i--) {
         if (remainspace >= goods[i].weight) {
-             if ((select[i][remainspace]-select[i-1][remainspace-goods[i].weight]==goods[i].value)) {
+             if ((select[i][remainspace] - select[i-1][remainspace-goods[i].weight] == goods[i].value)) {
                  cout << "item " << i << " is selected!" << endl;
                  remainspace = remainspace - goods[i].weight;	// 如果第i个物品被选择，那么背包剩余容量将减去第i个物品的重量 ;
              }
