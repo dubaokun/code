@@ -6,6 +6,9 @@
 #ifndef _BIN_TREE_MAX_DEEP_LENGTH
 #define _BIN_TREE_MAX_DEEP_LENGTH
 
+#include <stdio.h>
+#include <queue>
+
 int max(int a, int b) {
     return (a > b? a: b);
 }
@@ -25,12 +28,28 @@ public:
     virtual ~Solution() {};
 
 public:
-    int TreeDepthByRecursion(TreeNode * root) {
+    int TreeWidth(TreeNode * root) {
         if (NULL == root) {
             return 0;
         }
-        
-        return max(TreeDepthRecursion(root->left), TreeDepthRecursion(root->right)) + 1;
+    
+        std::queue<TreeNode *> level_node_queue;
+        level_node_queue.push_back(root);
+        int max_width_total = 0; 
+        int max_width_level = 0;
+
+        while(!level_node_queue.empty()) {
+            max_width_level = level_node_queue.size();
+            max_width_total = max(max_width_total, max_width_level);
+            
+            for (int i = 0; i < max_width_level; ++i) {
+                auto node = level_node_queue.pop_front();
+                if (!node->left) level_node_queue.push_back(node->left);
+                if (!node->right) level_node_queue.push+_back(node->right); 
+            }
+        }
+               
+        return max_width_total;
     }
 };
 

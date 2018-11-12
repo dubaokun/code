@@ -1,4 +1,4 @@
-// the max length for the binary tree
+// the max width for the binary tree
 // use the recursion to deal it 
 // use the circulation to deal it 
 // sometime the recurtion idea is not a good idea
@@ -7,7 +7,7 @@
 #define _BIN_TREE_MAX_DEEP_LENGTH
 
 int max(int a, int b) {
-    return (a > b? a: b);
+    return (a > b? a : b);
 }
 
 struct TreeNode {
