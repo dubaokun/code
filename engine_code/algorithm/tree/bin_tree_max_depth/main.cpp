@@ -34,18 +34,18 @@ public:
         }
     
         std::queue<TreeNode *> level_node_queue;
-        level_node_queue.push_back(root);
+        level_node_queue.push(root);
         int max_width_total = 0; 
         int max_width_level = 0;
 
         while(!level_node_queue.empty()) {
-            max_width_level = level_node_queue.size();
+            max_width_level = level_node_queue.size();                 // 当前层的宽度
             max_width_total = max(max_width_total, max_width_level);
             
-            for (int i = 0; i < max_width_level; ++i) {
-                auto node = level_node_queue.pop_front();
-                if (!node->left) level_node_queue.push_back(node->left);
-                if (!node->right) level_node_queue.push+_back(node->right); 
+            for (int i = 0; i < max_width_level; ++i) {                // 把当前层的节点导出，并且导入下一层node
+                auto node = level_node_queue.pop();
+                if (!node->left) level_node_queue.push(node->left);
+                if (!node->right) level_node_queue.push(node->right); 
             }
         }
                
