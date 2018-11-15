@@ -16,7 +16,32 @@
 
 using namespace std;
 
-int jump_step(int step_count) {
+// using base-recursion algorithm, O(2^n) 复杂度
+int jump_step_1(int step_count) { 
+    if (3 > step_count) {
+        return step_count;
+    }
+
+    return jump_step_1(step_count - 1) + jump_step_1(step_count - 2);
+}
+
+// 备忘录算法，空间换时间，存储需要重复计算的节点
+// 时间复杂度和空间复杂度都是 O(N)
+int jump_step_2(int step_count, std::map<int, int>& step_map) {
+    if (3 > step_count) {
+        return step_count;
+    }
+
+    if(!step_map.find(step_count)) {
+        step_map[step_count] = jump_step_2(step_count - 1) + jump_step_2(step_count - 2);
+    }
+        
+    return step_map[step_count];
+}
+
+// using no-recursion algorithm
+// 时间复杂度 O(N)
+int jump_step_3(int step_count) {
     if (0 == step_count || 1 == step_count || 2 == step_count) {
         return step_count;
     }
