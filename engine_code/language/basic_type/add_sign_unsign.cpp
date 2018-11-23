@@ -12,5 +12,9 @@ int main(int argc, char ** argv) {
     cout<<"z is "<< z <<endl;
     cout<<"m is "<< m <<endl;
     
+    if (x > y) {
+        cout << "9 > -20" << endl;
+    }
+
     return 0;
 }
