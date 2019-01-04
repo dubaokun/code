@@ -3,6 +3,7 @@
 #include <map>
 #include <pthread.h>
 #include <string.h>
+#include <unistd.h>
 
 using namespace std;
 
