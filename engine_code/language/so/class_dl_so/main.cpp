@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 
     void *so_handle = dlopen(soname, RTLD_LAZY);
     if (!so_handle) {
-        fprintf(stderr, "Error: load so `%s' failed./n", soname);
+        fprintf(stderr, "Error: load so `%s' failed.\n", soname);
         exit(-1);
     }
 
@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     create_t *create = (create_t*) dlsym(so_handle, "create");
     char *err = dlerror();
     if (NULL != err) {
-        fprintf(stderr, "%s/n", err);
+        fprintf(stderr, "%s\n", err);
         exit(-1);
     }
     Base *pa = create();
@@ -36,13 +36,13 @@ int main(int argc, char *argv[])
     pa->a = 57;
     pa->b = 3;
     //pa->c = 4;
-    printf("A.add(57, 3)=%d/n", pa->add()); // 注意，这里通过虚函数实现了
+    printf("A.add(57, 3)=%d\n", pa->add()); // 注意，这里通过虚函数实现了
                                             // 对A::add()的调用。
 
     destory_t *destory = (destory_t*) dlsym(so_handle, "destory");
     err = dlerror();
     if (NULL != err) {
-        fprintf(stderr, "%s/n", err);
+        fprintf(stderr, "%s\n", err);
         exit(-1);
     }
     destory(pa);
@@ -50,6 +50,6 @@ int main(int argc, char *argv[])
 
     dlclose(so_handle);
 
-    printf("DONE!/n");
+    printf("DONE!\n");
     return 0;
 }
