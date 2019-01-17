@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
         fprintf(stderr, "%s\n", err);
         exit(-1);
     }
-    Base *pa = create();
+    CBase *pa = create();
 
     pa->a = 57;
     pa->b = 3;
