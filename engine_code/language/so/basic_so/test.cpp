@@ -1,7 +1,6 @@
 #include <stdio.h>
+//#include <boost/thread/thread.hpp> 
 #include "max.h"
-
-#include <boost/thread/thread.hpp> 
 
 int main(int argc, char *argv[])
 {
