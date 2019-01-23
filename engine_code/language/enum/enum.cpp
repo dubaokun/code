@@ -19,6 +19,12 @@ enum IndexType {
     INDEX_ALL = INDEX_FULL | INDEX_INC_NORMAL | INDEX_INC_GOOD
 };
 
+enum MultiVersion {
+    PF_MULTI_V0 = 0,
+    PF_MULTI_V1 = 1,
+    PF_MULTI_MAX
+};
+
 void test() {
 	IndexType t1 = INDEX_FULL;
 	IndexType t2 = INDEX_INC_NORMAL;
@@ -36,6 +42,12 @@ void test() {
 
 int main(int argc, char ** argv)
 {
+    MultiVersion _multi_version = MultiVersion(0);
+    cout << _multi_version << endl;
+    _multi_version = PF_MULTI_MAX;
+    cout << _multi_version << endl;
+    return 0;
+
 	test();
 	return 0;	
 
