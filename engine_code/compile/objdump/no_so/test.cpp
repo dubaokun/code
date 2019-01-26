@@ -5,7 +5,6 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <execinfo.h>
-#include "max.h"
 
 static void print_stack_fs(int sig, FILE * output)
 {
@@ -67,9 +66,10 @@ static void sig_register()
 
 int main(int argc, char *argv[])
 {
-	sig_register();
+sig_register();
     int a = 10, b = -2, c = 100;
+    char * pstr = 0x00;
     int d = 100;
-    printf("max among 10, -2 and 100 is %d.\n", max(a, b, c));
+    *pstr = 0x00;
     return 0;
 }
