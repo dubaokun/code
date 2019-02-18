@@ -1,5 +1,5 @@
 WriteProtoc:main.o helloworld.pb.o
-	g++ -o WriteProtoc main.o helloworld.pb.o -lprotobuf 
+	g++ -o WriteProtoc.out main.o helloworld.pb.o -lprotobuf 
 
 main.o:main.cpp
 	g++ -g -c -o main.o main.cpp
