@@ -9,7 +9,7 @@ using namespace std;
 int main(int argc, char ** argv)
 {
     Order order;
-    order.set_time(123456);
+    //order.set_time(123456);
     order.set_userid(123);
     order.set_price(100.1f);
     order.set_desc("a test order");
@@ -46,9 +46,6 @@ int main(int argc, char ** argv)
     } else {
         cout << "ParseFromString error" << endl;
     }
-
-
-    
 
     return 0;
 }
