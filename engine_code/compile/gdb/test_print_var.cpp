@@ -7,7 +7,7 @@ int main(int argc, char ** argv)
 
     for (i = 0; i < sizeof(a); i++) {
         a[i] = i;
-     }
+    }
 
     return 0;
 }
