@@ -10,6 +10,7 @@
 
 #include "testinterface.h"
 
+class CFather;								// 虚构了一个不存在的类，并且进行前置声明
 class CSon : public CBase
 {
 public:
@@ -20,6 +21,8 @@ public:
 	virtual int add(void) {
 		return -1;
 	}
+private:
+	CFather* father_;						// 针对这个不存在的前置声明的类，进行成员变量的设置，定义为指针类型
 };
 
 class CGrandSon : public CSon
