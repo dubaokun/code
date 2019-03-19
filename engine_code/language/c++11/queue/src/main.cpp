@@ -18,6 +18,13 @@ void * run(void * argv)
 
 int main(int argc, char ** argv)
 {
+	if ("int64" == argv[1] )
+	{
+		std::unique_ptr<std::thread> thread_;
+		thread_.reset(new(std::nothrow)std::thread(run, NULL);
+		return 0;
+	}
+	//
     ThreadSafeQueue<int> que_;
 
     // create thread by pthread_create
