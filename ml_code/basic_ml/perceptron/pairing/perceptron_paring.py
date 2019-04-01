@@ -1,6 +1,5 @@
-
-#ÀûÓÃPythonÊµÏÖ¸ĞÖª»úËã·¨µÄ¶ÔÅ¼ĞÎÊ½
 # -*- encoding:utf-8 -*-
+#åˆ©ç”¨Pythonå®ç°æ„ŸçŸ¥æœºç®—æ³•çš„å¯¹å¶å½¢å¼
  
 """
 Created on 2017.6.7
@@ -10,38 +9,38 @@ Created on 2017.6.7
 import numpy as np
 import matplotlib.pyplot as plt
  
-#1¡¢´´½¨Êı¾İ¼¯
+# åˆ›å»ºæ•°æ®é›†
 def createdata():
     samples=np.array([[3,-3],[4,-3],[1,1],[1,2]])
     labels=np.array([-1,-1,1,1])
     return samples,labels
  
-#ÑµÁ·¸ĞÖª»úÄ£ĞÍ
+# è®­ç»ƒæ„ŸçŸ¥æœºæ¨¡å‹
 class Perceptron:
-    def __init__(self,x,y,a=1):
-        self.x=x
-        self.y=y
-        self.w=np.zeros((1,x.shape[0]))
-        self.b=0
-        self.a=1#Ñ§Ï°ÂÊ
-        self.numsamples=self.x.shape[0]
-        self.numfeatures=self.x.shape[1]
-        self.gMatrix=self.cal_gram(self.x)
+    def __init__(self, x, y, a=1):
+        self.x = x                                                              # matrix=4 X 2
+        self.y = y                                                              # matrix=4 X 1
+        self.w = np.zeros((1, x.shape[0]))                                      # matrix=1 X 4 | æƒå€¼å‚æ•°
+        self.b = 0                                                              # åç½®
+        self.a = 1                                                              # å­¦ä¹ ç‡ 
+        self.numsamples = self.x.shape[0]
+        self.numfeatures = self.x.shape[1]
+        self.gMatrix = self.cal_gram(self.x)
  
-    def cal_gram(self,x):
-        gMatrix=np.zeros((self.numsamples,self.numsamples))
+    def cal_gram(self, x):
+        gMatrix = np.zeros((self.numsamples, self.numsamples))
         for i in xrange(self.numsamples):
             for j in xrange(self.numsamples):
-                gMatrix[i][j]=np.dot(self.x[i,:],self.x[j,:])
-        return gMatrix
+                gMatrix[i][j] = np.dot(self.x[i,:], self.x[j,:])
+        return gMatrix                                                          # matrix=4X4
  
-    def sign(self,w,b,key):
-        y=np.dot(w*self.y,self.gMatrix[:,key])+b
+    def sign(self, w, b, key):
+        y = np.dot(w * self.y, self.gMatrix[:,key]) + b                         # param1: 1 X 4; param2: 4 X 1
         return int(y)
  
     def update(self,i):
-        self.w[i,]=self.w[i,]+self.a
-        self.b=self.b+self.y[i]*self.a
+        self.w[i,] = self.w[i,] + self.a
+        self.b = self.b + self.y[i]*self.a
  
     def cal_w(self):
         w=np.dot(self.w*self.y,self.x)
@@ -53,17 +52,17 @@ class Perceptron:
             count=0
             for i in range(self.numsamples):
                 tmpY=self.sign(self.w,self.b,i)
-                if tmpY*self.y[i]<=0:#Èç¹ûÊÇÒ»¸öÎó·ÖÀàÊµÀıµã
-                    print 'Îó·ÖÀàµãÎª£º',self.x[i,:],'´ËÊ±µÄwºÍbÎª£º',self.cal_w(),',',self.b
+                if tmpY*self.y[i]<=0:                                            # å¦‚æœæ˜¯ä¸€ä¸ªè¯¯åˆ†ç±»å®ä¾‹ç‚¹
+                    print 'è¯¯åˆ†ç±»ç‚¹ä¸ºï¼š',self.x[i,:],'æ­¤æ—¶çš„wå’Œbä¸ºï¼š',self.cal_w(),',',self.b
                     count+=1
                     self.update(i)
             if count==0:
-                print '×îÖÕÑµÁ·µÃµ½µÄwºÍbÎª£º',self.cal_w(),',',self.b
+                print 'æœ€ç»ˆè®­ç»ƒå¾—åˆ°çš„wå’Œbä¸ºï¼š',self.cal_w(),',',self.b
                 isFind=True
         weights=self.cal_w()
         return weights,self.b
  
-#»­Í¼Ãè»æ
+#ç”»å›¾æç»˜
 class Picture:
     def __init__(self,data,w,b):
         self.b=b

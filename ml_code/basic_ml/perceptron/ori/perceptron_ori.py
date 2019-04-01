@@ -32,7 +32,7 @@ class Perceptron:
         self.numfeatures=self.x.shape[1]
  
     def sign(self,w,b,x):
-        y=np.dot(x,w)+b										# 矩阵相乘
+        y=np.dot(x,w)+b										# 点积: x=1X2；w=2X1
         return int(y)
  
     def update(self,label_i,data_i):
