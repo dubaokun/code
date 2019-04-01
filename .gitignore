@@ -1,6 +1,7 @@
 # Prerequisites
 *.d
 *.swp
+*.pyc
 
 # Compiled Object files
 *.slo
