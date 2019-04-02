@@ -40,19 +40,19 @@ class Perceptron:
  
     def update(self,i):
         self.w[i,] = self.w[i,] + self.a
-        self.b = self.b + self.y[i]*self.a
+        self.b = self.b + self.y[i] * self.a
  
     def cal_w(self):
-        w=np.dot(self.w*self.y,self.x)
+        w=np.dot(self.w * self.y, self.x)
         return w
  
     def train(self):
-        isFind=False
+        isFind = False
         while not isFind:
-            count=0
+            count = 0
             for i in range(self.numsamples):
-                tmpY=self.sign(self.w,self.b,i)
-                if tmpY*self.y[i]<=0:                                            # 如果是一个误分类实例点
+                tmpY =s elf.sign(self.w, self.b, i)
+                if tmpY * self.y[i] <= 0:                                            # 如果是一个误分类实例点
                     print '误分类点为：',self.x[i,:],'此时的w和b为：',self.cal_w(),',',self.b
                     count+=1
                     self.update(i)
