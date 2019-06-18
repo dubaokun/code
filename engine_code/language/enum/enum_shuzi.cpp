@@ -1,4 +1,4 @@
-
+#include <iostream>
 
 enum IndexType
 {
@@ -8,3 +8,11 @@ enum IndexType
     INDEX_FULL_CACHE = 0x8,
     INDEX_ALL = INDEX_FULL | INDEX_INC_NORMAL | INDEX_INC_GOOD
 };
+
+#define PRINTENUM(x) #x
+
+int main(int argc, char ** argv) {
+    IndexType a = INDEX_FULL;
+    std::cout << PRINTENUM(IndexType::INDEX_FULL) << std::endl;
+    return 0;
+}
