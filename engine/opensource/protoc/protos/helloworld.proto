@@ -22,3 +22,8 @@ message Order
   string desc = 4;
   string ext = 5;
 }
+
+enum AA {
+  a = 0;
+  b = 1;
+}

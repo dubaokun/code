@@ -28,6 +28,7 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 
@@ -52,6 +53,27 @@ class Order;
 class OrderDefaultTypeInternal;
 extern OrderDefaultTypeInternal _Order_default_instance_;
 
+enum AA {
+  a = 0,
+  b = 1,
+  AA_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
+  AA_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
+};
+bool AA_IsValid(int value);
+const AA AA_MIN = a;
+const AA AA_MAX = b;
+const int AA_ARRAYSIZE = AA_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* AA_descriptor();
+inline const ::std::string& AA_Name(AA value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    AA_descriptor(), value);
+}
+inline bool AA_Parse(
+    const ::std::string& name, AA* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<AA>(
+    AA_descriptor(), name, value);
+}
 // ===================================================================
 
 class Order : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Order) */ {
@@ -360,6 +382,18 @@ inline void Order::set_allocated_ext(::std::string* ext) {
 
 // @@protoc_insertion_point(namespace_scope)
 
+
+namespace google {
+namespace protobuf {
+
+template <> struct is_proto_enum< ::AA> : ::google::protobuf::internal::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::AA>() {
+  return ::AA_descriptor();
+}
+
+}  // namespace protobuf
+}  // namespace google
 
 // @@protoc_insertion_point(global_scope)
 

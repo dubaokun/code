@@ -47,6 +47,7 @@ void InitDefaultsOrder() {
 }
 
 ::google::protobuf::Metadata file_level_metadata[1];
+const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[1];
 
 const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
@@ -73,7 +74,7 @@ void protobuf_AssignDescriptors() {
   ::google::protobuf::MessageFactory* factory = NULL;
   AssignDescriptors(
       "helloworld.proto", schemas, file_default_instances, TableStruct::offsets, factory,
-      file_level_metadata, NULL, NULL);
+      file_level_metadata, file_level_enum_descriptors, NULL);
 }
 
 void protobuf_AssignDescriptorsOnce() {
@@ -92,10 +93,11 @@ void AddDescriptorsImpl() {
   static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
       "\n\020helloworld.proto\"O\n\005Order\022\014\n\004time\030\001 \001("
       "\005\022\016\n\006userid\030\002 \001(\005\022\r\n\005price\030\003 \001(\002\022\014\n\004desc"
-      "\030\004 \001(\t\022\013\n\003ext\030\005 \001(\tb\006proto3"
+      "\030\004 \001(\t\022\013\n\003ext\030\005 \001(\t*\022\n\002AA\022\005\n\001a\020\000\022\005\n\001b\020\001b"
+      "\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 107);
+      descriptor, 127);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "helloworld.proto", &protobuf_RegisterTypes);
 }
@@ -111,6 +113,20 @@ struct StaticDescriptorInitializer {
   }
 } static_descriptor_initializer;
 }  // namespace protobuf_helloworld_2eproto
+const ::google::protobuf::EnumDescriptor* AA_descriptor() {
+  protobuf_helloworld_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_helloworld_2eproto::file_level_enum_descriptors[0];
+}
+bool AA_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+      return true;
+    default:
+      return false;
+  }
+}
+
 
 // ===================================================================
 
