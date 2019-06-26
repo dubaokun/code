@@ -9,6 +9,9 @@ int main(int argc, char** argv)
 	cout << "pnum指针的值: " << pnum << endl;
     cout << "pstr指针的值：" << pstr << endl;
     cout << "==============" << endl;
+    char * pstr1 = static_cast<char *>(pnum);
+    cout << "pstr1指向的内存：" << pstr1 << endl;
+    cout << "==============" << endl;
 	cout << "pstr指针的值: " << static_cast<void *>(pstr)<<endl;//直接输出pstr会输出其指向的字符串，这里的类型转换是为了保证输出pstr的值
 	cout<<"pnum指向的内容: "<<hex<<*pnum<<endl;
 	cout<<"pstr指向的内容: "<<pstr<<endl;
