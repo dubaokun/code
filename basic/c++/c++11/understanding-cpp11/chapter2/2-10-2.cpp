@@ -6,7 +6,7 @@ struct Object{
 };
 
 struct Base : public Object {
-    void fun() {}   // 声明为final
+    void fun() final {std::cout << "base" << std::endl}   // 声明为final
 };
 
 struct Derived : public Base {
@@ -16,5 +16,6 @@ struct Derived : public Base {
 int main(int argc, char** argv) {
 	Derived derive;
 	derive.fun(1);
+    derive.fun();
 	return 0;
 }
