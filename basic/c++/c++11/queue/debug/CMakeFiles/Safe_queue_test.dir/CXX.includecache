@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/dubaokun/geek_sourcecode/c++11/queue/src/main.cpp
+/home/dubaokun/github/code/basic/c++/c++11/queue/src/main.cpp
 thread
 -
 algorithm
@@ -18,9 +18,9 @@ unistd.h
 pthread.h
 -
 safe_queue.h
-/home/dubaokun/geek_sourcecode/c++11/queue/src/safe_queue.h
+/home/dubaokun/github/code/basic/c++/c++11/queue/src/safe_queue.h
 
-/home/dubaokun/geek_sourcecode/c++11/queue/src/safe_queue.h
+/home/dubaokun/github/code/basic/c++/c++11/queue/src/safe_queue.h
 mutex
 -
 queue
