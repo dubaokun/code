@@ -1,7 +1,7 @@
 class ConvType {
 public:
     ConvType(int i) {};
-    explicit ConvType(char c) = delete;  // 删除explicit的char构造函数
+    ConvType(char c) = delete;  // 删除explicit的char构造函数
 };
 
 void Func(ConvType ct) {}
