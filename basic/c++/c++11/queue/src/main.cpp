@@ -21,7 +21,7 @@ int main(int argc, char ** argv)
 	if ("int64" == argv[1] )
 	{
 		std::unique_ptr<std::thread> thread_;
-		thread_.reset(new(std::nothrow)std::thread(run, NULL);
+		thread_.reset(new(std::nothrow)std::thread(run, nullptr));
 		return 0;
 	}
 	//

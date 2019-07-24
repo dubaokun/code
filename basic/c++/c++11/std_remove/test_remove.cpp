@@ -3,7 +3,6 @@
 #include <iostream>
 #include <algorithm>
 
-using namespace std;
 
 int main(int argc, char* argv[])
 {
@@ -21,8 +20,8 @@ int main(int argc, char* argv[])
     //remove第三个参数为常数的情况
     //vec.erase(std::remove(vec.begin(), vec.end(), 3), vec.end());
     std::vector<int>::iterator iter2 = std::remove(vec.begin(), vec.end(), 3);
-    cout << *iter2 << endl;
-    cout << "===============================" << endl;
+    std::cout << *iter2 << std::endl;
+    std::cout << "===============================" << std::endl;
 
     std::vector<int>::iterator iter = vec.begin();
     for (iter = vec.begin(); iter != vec.end(); iter++) {

@@ -18,5 +18,6 @@ int main() {
   cout << alignof(StrictAligned) << endl;   // 16
   cout << alignof(*pia) << endl;            // 4
   cout << alignof(sa) << endl;              // 16
+  cout << alignof(long double) << endl;
   return 0;
 }

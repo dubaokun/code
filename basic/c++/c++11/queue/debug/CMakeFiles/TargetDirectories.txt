@@ -1,3 +1,1 @@
-/home/dubaokun/geek_sourcecode/c++11/queue/debug/CMakeFiles/edit_cache.dir
-/home/dubaokun/geek_sourcecode/c++11/queue/debug/CMakeFiles/rebuild_cache.dir
-/home/dubaokun/geek_sourcecode/c++11/queue/debug/CMakeFiles/Safe_queue_test.dir
+/home/dubaokun/github/code/basic/c++/c++11/queue/debug/CMakeFiles/Safe_queue_test.dir
