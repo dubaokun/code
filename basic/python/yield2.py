@@ -3,6 +3,7 @@ def foo():
     while True:
         res = yield 4
         print("res:",res)
+
 g = foo()
 print(next(g))
 print("*"*20)
