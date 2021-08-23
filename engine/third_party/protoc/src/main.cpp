@@ -16,7 +16,7 @@ int main(int argc, char ** argv)
     order.set_ext("hello world");
 
     string sOrder;
-    order.SerializeToString(&sOrder);
+    order.SerializeToString(&sOrder);    // string仅仅是作为载体，实际存储的是二进制
     
     std::cout << "==================" << std::endl;
     std::cout << sOrder << std::endl;

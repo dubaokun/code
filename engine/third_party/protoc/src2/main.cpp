@@ -18,10 +18,9 @@ int main(int argc, char ** argv)
     int read_bytes = fread(buffer, 1, 1024, fp);
         
     cout << "read_bytes=" << read_bytes << endl;
-
-    fclose(fp);
-    
     cout << buffer << endl;
+    cout << "===========================" << endl;
+    fclose(fp);
 
     Order order;
     if(order.ParseFromString(buffer)) {
