@@ -8,11 +8,19 @@
  
 #include <iostream>
 #include <fstream>
+#include <iostream>
+#include <string>
+#include <string.h>
 #include <cmath>
-using namespace std;
+
  
-const int SAMPLE = 27;
-const int PARAMETER = 12;
+#define BUFFSIZE 2048
+using namespace std;
+const int SAMPLE = 1000001;
+const int PARAMETER = 2;
+
+
+using namespace std;
  
 double hypoVal(double para[], double fea[], int count);
 double costVal(double para[], double lab[], int amount, double allX[][PARAMETER + 1]);
@@ -20,35 +28,53 @@ double costVal(double para[], double lab[], int amount, double allX[][PARAMETER 
 int main()
 {
     //文本操作，读入数据
-    fstream infile;
-    infile.open("data.txt");
-    if (!infile)
-    {
-        cout << "can't open file!" << endl;
-        return -1;
+    FILE *file= NULL;
+    char buf[BUFFSIZE];
+    if((file = fopen("data.txt", "r")) == NULL){
+        cout << " open error " << endl;
     }
-    //二维数组储存数据
-    double X[SAMPLE + 1][PARAMETER + 1];    //features matrix
-    for (int i = 0; i < SAMPLE + 1; i++)
-    {
-        for (int j = 0; j < PARAMETER + 1; j++)
-        {
-            infile >> X[i][j];
-        }
+    double ** X = new double*[SAMPLE];
+    for(int i = 0; i < SAMPLE; i++) {
+      X[i] = new double[PARAMETER + 1];
     }
-    infile.close();
+    int i = 0;
+    while(fgets(buf, BUFFSIZE, file)){
+        //cout << "________________BEGIN" << endl;
+        int len= strlen(buf);
+        buf[len-1]='\0';
+        //cout << buf << endl;
+        //cout << "======" << endl;
+        string strs = buf;
+        size_t pos = strs.find(" ");
+        string temp = strs.substr(0, pos);
+        strs = strs.substr(pos + 1, strs.size());
+        //cout << temp << " " << strs << endl;
+        double a1 = stold(temp);
+        double a2 = stod(strs);
+        //cout << a1 << " " << a2 << endl;
+        X[i][0] = a1;
+        X[i][1] = a2;
+        //cout << X[i][0] << " " << X[i][1] << endl;
+        i++;
+        //cout << "________________END" << endl;
+
+    }
     //验证数据是否写入
+    /*
+    cout << "Sample Print Start:" << endl;
     for (int i = 0; i < SAMPLE + 1; i++)
     {
-        for (int j = 0; j < PARAMETER + 1; j++)
+        for (int j = 0; j < PARAMETER; j++)
             cout << X[i][j] << " ";
         cout << endl;
     }
+    cout << "Sample Print End:" << endl;
+    */
     //特征缩放
     
     //留一法，得到训练集X[0]~X[26]和测试集X[27]
     double y[SAMPLE] = { 0 };      //labels vector
-    double theta[PARAMETER] = { 0 };   //parameters vector
+    double theta[PARAMETER] = { 0.0001 };   //parameters vector
     double a = 0.0001;    //set learning rate as 0.0001
     int cnt = 0;        //to count the times of loop
     for (int i = 0; i < SAMPLE; i++)
@@ -56,7 +82,7 @@ int main()
         y[i] = X[i][PARAMETER];
     }
     double h =  hypoVal(theta, X[0], PARAMETER); //hypothesis function
-    double cost = costVal(theta, y, SAMPLE, X); //cost function
+    double cost = costVal(theta, y, SAMPLE, (double (*)[3])X); //cost function
     
     //梯度下降法求theta
     double temp[PARAMETER] = { 0 };    //used for simultaneously updating theta parameters
@@ -82,7 +108,7 @@ int main()
             cout << theta[i] << " ";
         }
         cout << endl;
-        cost = costVal(theta, y, SAMPLE, X);        //new cost value
+        cost = costVal(theta, y, SAMPLE, (double (*)[3])X);        //new cost value
         cnt++;
     } while (tempCost - cost > 0.00001);
     
@@ -105,7 +131,7 @@ double hypoVal(double para[], double fea[], int count)  //the value of hypothesi
 double costVal(double para[], double lab[], int amount, double allX[][PARAMETER + 1])    //the value of cost function
 {
     double sum = 0;
-    for (int i = 0; i < amount; i++)
+    for (int i = 0; i < 100000; i++)
     {
         sum += pow((hypoVal(para, allX[i], PARAMETER) - lab[i]), 2);
     }
