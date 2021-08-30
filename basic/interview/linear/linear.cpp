@@ -23,7 +23,7 @@ const int PARAMETER = 2;
 using namespace std;
  
 double hypoVal(double para[], double fea[], int count);
-double costVal(double para[], double lab[], int amount, double allX[][PARAMETER + 1]);
+double costVal(double para[], double lab[], int amount, double allX[][PARAMETER]);
  
 int main()
 {
@@ -35,7 +35,7 @@ int main()
     }
     double ** X = new double*[SAMPLE];
     for(int i = 0; i < SAMPLE; i++) {
-      X[i] = new double[PARAMETER + 1];
+      X[i] = new double[PARAMETER];
     }
     int i = 0;
     while(fgets(buf, BUFFSIZE, file)){
@@ -74,7 +74,7 @@ int main()
     
     //留一法，得到训练集X[0]~X[26]和测试集X[27]
     double y[SAMPLE] = { 0 };      //labels vector
-    double theta[PARAMETER] = { 0.0001 };   //parameters vector
+    double theta[PARAMETER] = { 0.01, 0.01 };   //parameters vector
     double a = 0.0001;    //set learning rate as 0.0001
     int cnt = 0;        //to count the times of loop
     for (int i = 0; i < SAMPLE; i++)
@@ -82,7 +82,7 @@ int main()
         y[i] = X[i][PARAMETER];
     }
     double h =  hypoVal(theta, X[0], PARAMETER); //hypothesis function
-    double cost = costVal(theta, y, SAMPLE, (double (*)[3])X); //cost function
+    double cost = costVal(theta, y, SAMPLE, (double (*)[2])X); //cost function
     
     //梯度下降法求theta
     double temp[PARAMETER] = { 0 };    //used for simultaneously updating theta parameters
@@ -97,6 +97,7 @@ int main()
             {
                 sum += (hypoVal(theta, X[i], PARAMETER) - y[i]) * X[i][j];
             }
+            sum = sum / PARAMETER;
             der[j] = (1.0 / double (PARAMETER)) * sum;
             temp[j] = theta[j] - a * der[j];
             sum = 0;
@@ -108,9 +109,9 @@ int main()
             cout << theta[i] << " ";
         }
         cout << endl;
-        cost = costVal(theta, y, SAMPLE, (double (*)[3])X);        //new cost value
+        cost = costVal(theta, y, SAMPLE, (double (*)[2])X);        //new cost value
         cnt++;
-    } while (tempCost - cost > 0.00001);
+    } while (tempCost - cost > 0.001);
     
     //测试集进行测试
     cout << "共进行" << cnt << "次梯度下降法" << endl;
@@ -128,13 +129,14 @@ double hypoVal(double para[], double fea[], int count)  //the value of hypothesi
     }
     return hy;
 }
-double costVal(double para[], double lab[], int amount, double allX[][PARAMETER + 1])    //the value of cost function
+double costVal(double para[], double lab[], int amount, double allX[][PARAMETER])    //the value of cost function
 {
     double sum = 0;
-    for (int i = 0; i < 100000; i++)
+    int amounts = 100000;
+    for (int i = 0; i < amounts ; i++)
     {
         sum += pow((hypoVal(para, allX[i], PARAMETER) - lab[i]), 2);
     }
-    cout << "costVal now is : " << (1.0/(2.0 * (double) amount)) * sum << endl;
-    return double(1.0/(2.0 * (double) amount)) * sum;
+    cout << "costVal now is : " << (1.0/(2.0 * (double) amounts)) * sum << endl;
+    return double(1.0/(2.0 * (double) amounts)) * sum;
 }
