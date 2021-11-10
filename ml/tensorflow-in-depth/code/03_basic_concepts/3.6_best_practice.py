@@ -1,7 +1,9 @@
 # -*- coding=utf-8 -*-
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import matplotlib.pyplot as plt
 import numpy as np
+
+tf.disable_v2_behavior()
 
 # 打印日志的步长
 log_step = 50
@@ -40,7 +42,8 @@ with tf.Session() as sess:
     sess.run(tf.global_variables_initializer()) 
 # ================ 8.迭代训练 ================
     print("Start training:")
-    for step in xrange(max_train_steps):
+    # for step in xrange(max_train_steps): python3合并xrange和range为range
+    for step in range(max_train_steps):
         sess.run(train_op, feed_dict={X: train_X, Y_: train_Y})
         # 每隔log_step步打印一次日志
         if step % log_step == 0:
@@ -56,7 +59,7 @@ with tf.Session() as sess:
     print("Linear Regression Model: Y==%.4f*X+%.4f" % (weight, bias))
 # ================ 模型可视化 ================
     # 初始化Matplotlib后端
-    %matplotlib
+    # %matplotlib      jupyter需要使用
     # 根据训练数据X和Y，添加对应的红色圆点
     plt.plot(train_X, train_Y, 'ro', label='Training data')
     # 根据模型参数和训练数据，添加蓝色（缺省色）拟合直线
