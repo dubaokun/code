@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
-import tensorflow as tf
+# import tensorflow as tf
+import tensorflow.compat.v1 as tf
+
+tf.disable_v2_behavior()
 # 创建文件名队列filename_queue
-filename_queue = tf.train.string_input_producer(['stat.tfrecord'])
+filename_queue = tf.train.string_input_producer(['stat.tfrecord'],
+        num_epochs=100)
 # 创建读取TFRecords文件的reader
 reader = tf.TFRecordReader()
 # 取出stat.tfrecord文件中的一条序列化的样例serialized_example
@@ -16,3 +20,17 @@ features = tf.parse_single_example(
             'outgo': tf.FixedLenFeature([], tf.float32),
         }
 )
+
+init_op = tf.global_variables_initializer()
+with tf.Session() as sess:
+  sess.run(init_op)
+  # 线程管理调度框架
+  coord = tf.train.Coordinator()
+  # 必须添加，否则不会触发框架进行样例的读取进入队列
+  threads = tf.train.start_queue_runners(sess=sess, coord=coord)
+  print("Thread=%s" % threads)
+  try:
+    for i in range(10):
+        example = sess.run(features);
+        print(example)
+  coord.join(threads)
