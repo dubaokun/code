@@ -5,6 +5,17 @@ def laplace_noisy(sensitivety,epsilon):
     n_value = np.random.laplace(0, sensitivety/epsilon, 1)
     return n_value
 
+# 基于laplace的分布函数的反函数计算
+def laplace_noisy2(sensitivety, epsilon):
+    b = sensitivety/epsilon
+    u1 = np.random.random()
+    u2 = np.random.random()
+    if u1 <= 0.5:
+        noisy = -b*np.log(1.-u2)
+    else:
+        noisy = b*np.log(u2)
+    return noisy
+
 # 计算基于拉普拉斯加噪的混淆值
 def laplace_mech(data, sensitivety, epsilon):
     for i in range(len(data)):
