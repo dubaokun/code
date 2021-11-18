@@ -1,16 +1,8 @@
 import numpy as np
  
- # 计算基于拉普拉斯分布的噪声
+# 计算基于拉普拉斯分布的噪声
 def laplace_noisy(sensitivety,epsilon):
-    beta = sensitivety/epsilon
-    u1 = np.random.random()
-    u2 = np.random.random()
-    # 计算分布函数
-    if u1 <= 0.5:
-        n_value = -beta*np.log(1.-u2)
-    else:
-        n_value = beta*np.log(u2)
-    print("Add Noisy = %.16f " % n_value)
+    n_value = np.random.laplace(0, sensitivety/epsilon, 1)
     return n_value
 
 # 计算基于拉普拉斯加噪的混淆值
