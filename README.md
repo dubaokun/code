@@ -1,21 +1,34 @@
 # 杜宝坤的个人代码
   主要用于记录一些个人的学习与研究历程。代码分为几个部分：
-- 基础代码 包含开发语言、计算计算机基础（网络、数据库、操作系统等）
-- 工程进阶 包含分布式、存储等
+- 基础代码
+- 工程进阶
 - 算法知识
 - 隐私计算
 
 # 基础代码
 基础代码 [点击链接](https://github.com/dubaokun/code/tree/master/basic)。
+涉及以下方面：
+- 开发语言
+- 编译原理
+- 数据结构
 
 # 工程架构
 工程架构 [点击链接](https://github.com/dubaokun/code/tree/master/engine)。
+涉及以下方面：
+- CPU调度
+- 内存管理
+- 磁盘管理
+- 缓存
+- 存储
+- 开源软件
 
 # 算法相关
 算法相关 [点击链接](https://github.com/dubaokun/code/tree/master/ml)。
+目前涉及的内容是一些较为基础的算法知识以及算法框架
 
 # 隐私计算
 隐私计算 [点击链接](https://github.com/dubaokun/code/tree/master/privacy)。
+联邦学习部分在另外的开源地址，本个人地址仅仅是一些隐私计算的相关代码
 
 
 # 自我介绍
