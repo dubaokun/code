@@ -6,5 +6,5 @@
 - 隐私计算
 
 # 基础代码
-地址：这是一个链接 [Markdown语法](https://markdown.com.cn)。
+基础代码 [点击链接](https://github.com/dubaokun/code/tree/master/basic)。
 
