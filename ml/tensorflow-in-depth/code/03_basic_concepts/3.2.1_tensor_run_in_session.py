@@ -9,9 +9,11 @@ d=tf.add(c,a)
 e=tf.add(d,b)
 
 with tf.Session() as sess:
+    print("************begin***************")
     print("a[0]=%s, a[1]=%s" % (a[0].eval(), a[1].eval()))
     print("a.name=%s" % (a.name))
     print("b.name=%s" % (b.name))
+    print("a.op=\n[\n%s]" % (a.op))
     print("a.consumers=%s" % (a.consumers()))
     print("b.consumers=%s" % (b.consumers()))
     print("c.name=%s" % (c.name))
