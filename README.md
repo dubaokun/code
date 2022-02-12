@@ -7,14 +7,14 @@
 - 隐私计算
 
 # 基础代码
-基础代码 [点击链接](https://github.com/dubaokun/code/tree/master/basic)。
+基础代码 [点击链接](https://github.com/dubaokun/code/tree/master/1-Cornerstone)。
 涉及以下方面：
 - 开发语言
 - 编译原理
 - 数据结构
 
 # 工程架构
-工程架构 [点击链接](https://github.com/dubaokun/code/tree/master/engine)。
+工程架构 [点击链接](https://github.com/dubaokun/code/tree/master/2-Architecture)。
 涉及以下方面：
 - CPU调度
 - 内存管理
@@ -24,12 +24,22 @@
 - 开源软件
 
 # 算法相关
-算法相关 [点击链接](https://github.com/dubaokun/code/tree/master/ml)。
+算法相关 [点击链接](https://github.com/dubaokun/code/tree/master/3-Machine-Learning)。
 目前涉及的内容是一些较为基础的算法知识以及算法框架
+- 通用算法与算法框架
+- 传统机器学习算法与框架
+- 深度学习算法与框架
+- SOTA模型与框架
+
 
 # 隐私计算
-隐私计算 [点击链接](https://github.com/dubaokun/code/tree/master/privacy)。
+隐私计算 [点击链接](https://github.com/dubaokun/code/tree/master/4-Privacy)。
 联邦学习部分在另外的开源地址，本个人地址仅仅是一些隐私计算的相关代码
+- 隐私计算基础技术
+- 多方安全计算
+- 差分隐私
+- 可信计算
+- 联邦学习
 
 # 参考资料
 - 知乎号：秃顶的码农，知乎隐私计算专栏 
