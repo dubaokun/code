@@ -15,10 +15,10 @@ def main(_):
   mnist = input_data.read_data_sets(FLAGS.data_dir, one_hot=True)
   # 创建模型
   x = tf.placeholder(tf.float32, [None, 784])	# 图像数据
-  y_ = tf.placeholder(tf.float32, [None, 10]) # 图像标签
   W = tf.Variable(tf.zeros([784, 10]))			  # 模型权重
   b = tf.Variable(tf.zeros([10]))				      # 模型偏置
   y = tf.matmul(x, W) + b						          # 推理操作
+  y_ = tf.placeholder(tf.float32, [None, 10]) # 图像标签
   # 使用交叉熵作为损失值
   cross_entropy = tf.reduce_mean(
       tf.nn.softmax_cross_entropy_with_logits(labels=y_, logits=y))

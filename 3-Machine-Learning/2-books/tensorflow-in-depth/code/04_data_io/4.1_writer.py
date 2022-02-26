@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-# import tensorflow as tf
-import tensorflow.compat.v1 as tf
-tf.disable_v2_behavior()
+import tensorflow as tf
+# import tensorflow.compat.v1 as tf
+# tf.disable_v2_behavior()
 # 创建向TFRecords文件写数据记录的writer
 writer = tf.python_io.TFRecordWriter('stat.tfrecord')
 # 2轮循环构造输入样例
