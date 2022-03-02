@@ -31,8 +31,16 @@ with tf.Session() as sess:
   # 必须添加，否则不会触发框架进行样例的读取进入队列
   threads = tf.train.start_queue_runners(sess=sess, coord=coord)
   #tf.train.start_queue_runners(sess=sess)
-  # print("Thread=%s" % threads)
-  for i in range(2):
-    example = sess.run(features);
-    print(example)
+  print("Thread=%s" % threads)
+  try:
+    for i in range(10):
+        if not coord.should_stop():
+          example = sess.run(features);
+          print(example)
+  except tf.errors.OutOfRangeError:
+      print('Cathch OutOfRangeError')
+  finally:
+      coord.request_stop()
+      print('Finish Reading')
   coord.join(threads)
+  sess.close()
