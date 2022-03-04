@@ -36,9 +36,9 @@ print('model: ' + str(model))
 adj, features, y_train, y_val, y_test, train_mask, val_mask, test_mask = process.load_data(dataset)
 features, spars = process.preprocess_features(features)
 
-nb_nodes = features.shape[0]
-ft_size = features.shape[1]
-nb_classes = y_train.shape[1]
+nb_nodes = features.shape[0]    # 2708
+ft_size = features.shape[1]     # 1433
+nb_classes = y_train.shape[1]   # 7
 
 adj = adj.todense()
 

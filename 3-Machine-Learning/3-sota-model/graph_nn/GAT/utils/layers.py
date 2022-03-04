@@ -1,27 +1,44 @@
 import numpy as np
 import tensorflow as tf
 
+# 一维卷积，相当于一个单层神经网络
 conv1d = tf.layers.conv1d
 
+'''
+输入是(B,N,D)，B是batch_size，N是结点数，D是每个结点的原始特征维度数
+输出是(B,N,F)，F是结点的新特征维度数
+每个点从维度D到维度F是按注意力为权重聚合了邻居结点的特征
+'''
 def attn_head(seq, out_sz, bias_mat, activation, in_drop=0.0, coef_drop=0.0, residual=False):
+    '''
+    seq: 输入(B,N,D)，B是batch_size，N是结点数，D是每个结点的原始特征维度数
+    out_sz: 每个结点的输出特征维度，设为F
+    bias_mat: (N,N)的掩码矩阵
+    activation: 激活函数
+    in_drop: 输入的dropout率
+    coef_drop:注意力矩阵的dropout率
+    residual:是否添加残差连接
+    '''
     with tf.name_scope('my_attn'):
         if in_drop != 0.0:
             seq = tf.nn.dropout(seq, 1.0 - in_drop)
 
-        seq_fts = tf.layers.conv1d(seq, out_sz, 1, use_bias=False)
+        seq_fts = tf.layers.conv1d(seq, out_sz, 1, use_bias=False)    # shape = [1, 2708, 8]
 
         # simplest self-attention possible
-        f_1 = tf.layers.conv1d(seq_fts, 1, 1)
-        f_2 = tf.layers.conv1d(seq_fts, 1, 1)
-        logits = f_1 + tf.transpose(f_2, [0, 2, 1])
-        coefs = tf.nn.softmax(tf.nn.leaky_relu(logits) + bias_mat)
+        f_1 = tf.layers.conv1d(seq_fts, 1, 1) # shape = [1, 2708, 1]
+        f_2 = tf.layers.conv1d(seq_fts, 1, 1) # shape = [1, 2708, 1]
+        logits = f_1 + tf.transpose(f_2, [0, 2, 1]) # transpose（转置） = [1, 1, 2708]
+        coefs = tf.nn.softmax(tf.nn.leaky_relu(logits) + bias_mat) # shape = [1, 2708, 2708]
 
         if coef_drop != 0.0:
             coefs = tf.nn.dropout(coefs, 1.0 - coef_drop)
         if in_drop != 0.0:
             seq_fts = tf.nn.dropout(seq_fts, 1.0 - in_drop)
 
+        # (B,N,N)* (B,N,F) => (B,N,F)
         vals = tf.matmul(coefs, seq_fts)
+        # 添加偏置项
         ret = tf.contrib.layers.bias_add(vals)
 
         # residual connection
