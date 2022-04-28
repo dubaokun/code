@@ -5,7 +5,6 @@ import scipy.sparse as sp
 from scipy.sparse.linalg.eigen.arpack import eigsh
 import sys
 
-
 def parse_index_file(filename):
     """Parse index file."""
     index = []
@@ -20,7 +19,20 @@ def sample_mask(idx, l):
     mask[idx] = 1
     return np.array(mask, dtype=np.bool)
 
+def show3(data):
+    print('6666$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
+    print('======')
+    print(data[0])
+    print('======')
+    print(data[0][0])
+    print('======')
+    print(data.shape)
+    print('======')
+    print(type(data)) # x是一个稀疏矩阵,记住1的位置,140个实例,每个实例的特征向量维度是1433
+    print('======')
+    print('6666$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
 
+# 数据的读取，这个预处理是把训练集（其中一部分带有标签），测试集，标签的位置，对应的掩码训练标签等返回。
 def load_data(dataset_str):
     """
     Loads input data from gcn/data directory
@@ -41,6 +53,7 @@ def load_data(dataset_str):
     :param dataset_str: Dataset name
     :return: All data input files loaded (as well the training/test data).
     """
+    print('load data')
     names = ['x', 'y', 'tx', 'ty', 'allx', 'ally', 'graph']
     objects = []
     for i in range(len(names)):
@@ -50,7 +63,12 @@ def load_data(dataset_str):
             else:
                 objects.append(pkl.load(f))
 
+    # x.shape:(140, 1433); y.shape:(140, 7);tx.shape:(1000, 1433);ty.shape:(1708, 1433);
+    # allx.shape:(1708, 1433);ally.shape:(1708, 7)
     x, y, tx, ty, allx, ally, graph = tuple(objects)
+    show3(x)
+
+    # =========================
     test_idx_reorder = parse_index_file("data/ind.{}.test.index".format(dataset_str))
     test_idx_range = np.sort(test_idx_reorder)
 
