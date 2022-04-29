@@ -51,6 +51,10 @@ train_mask = train_mask[np.newaxis]
 val_mask = val_mask[np.newaxis]
 test_mask = test_mask[np.newaxis]
 
+print('=================================================')
+print(adj.shape)
+print('=================================================')
+
 biases = process.adj_to_bias(adj, [nb_nodes], nhood=1)
 
 with tf.Graph().as_default():
@@ -109,7 +113,7 @@ with tf.Graph().as_default():
                 train_acc_avg += acc_tr
                 tr_step += 1
 
-            vl_step = 0
+            vl_step = 500
             vl_size = features.shape[0]
 
             while vl_step * batch_size < vl_size:
@@ -152,7 +156,7 @@ with tf.Graph().as_default():
         saver.restore(sess, checkpt_file)
 
         ts_size = features.shape[0]
-        ts_step = 0
+        ts_step = 1708
         ts_loss = 0.0
         ts_acc = 0.0
 

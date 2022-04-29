@@ -22,14 +22,15 @@ def attn_head(seq, out_sz, bias_mat, activation, in_drop=0.0, coef_drop=0.0, res
     with tf.name_scope('my_attn'):
         if in_drop != 0.0:
             seq = tf.nn.dropout(seq, 1.0 - in_drop)
-
-        seq_fts = tf.layers.conv1d(seq, out_sz, 1, use_bias=False)    # shape = [1, 2708, 8]
+       
+        # (B,N,D)=>(B,N,F)
+        seq_fts = tf.layers.conv1d(seq, out_sz, 1, use_bias=False)      # shape = [1, 2708, 8]
 
         # simplest self-attention possible
-        f_1 = tf.layers.conv1d(seq_fts, 1, 1) # shape = [1, 2708, 1]
-        f_2 = tf.layers.conv1d(seq_fts, 1, 1) # shape = [1, 2708, 1]
-        logits = f_1 + tf.transpose(f_2, [0, 2, 1]) # transpose（转置） = [1, 1, 2708]
-        coefs = tf.nn.softmax(tf.nn.leaky_relu(logits) + bias_mat) # shape = [1, 2708, 2708]
+        f_1 = tf.layers.conv1d(seq_fts, 1, 1)                           # shape = [1, 2708, 1]
+        f_2 = tf.layers.conv1d(seq_fts, 1, 1)                           # shape = [1, 2708, 1]
+        logits = f_1 + tf.transpose(f_2, [0, 2, 1])                     # transpose（转置） = [1, 1, 2708]
+        coefs = tf.nn.softmax(tf.nn.leaky_relu(logits) + bias_mat)      # shape = [1, 2708, 2708]
 
         if coef_drop != 0.0:
             coefs = tf.nn.dropout(coefs, 1.0 - coef_drop)
