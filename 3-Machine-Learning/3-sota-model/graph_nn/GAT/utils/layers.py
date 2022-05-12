@@ -4,6 +4,12 @@ import tensorflow as tf
 # 一维卷积，相当于一个单层神经网络
 conv1d = tf.layers.conv1d
 
+def show(act):
+    print('Start ===========================')
+    print('Type = ', type(act))
+    print('End ===========================')
+
+
 '''
 输入是(B,N,D)，B是batch_size，N是结点数，D是每个结点的原始特征维度数
 输出是(B,N,F)，F是结点的新特征维度数
@@ -19,6 +25,7 @@ def attn_head(seq, out_sz, bias_mat, activation, in_drop=0.0, coef_drop=0.0, res
     coef_drop:注意力矩阵的dropout率
     residual:是否添加残差连接
     '''
+    show(seq)
     with tf.name_scope('my_attn'):
         if in_drop != 0.0:
             seq = tf.nn.dropout(seq, 1.0 - in_drop)

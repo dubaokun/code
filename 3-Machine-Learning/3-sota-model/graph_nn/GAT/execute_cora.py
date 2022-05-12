@@ -12,7 +12,7 @@ dataset = 'cora'
 # training params
 batch_size = 1
 nb_epochs = 100000
-patience = 100
+patience = 100  # 耐心
 lr = 0.005  # learning rate
 l2_coef = 0.0005  # weight decay
 hid_units = [8] # numbers of hidden units per each attention head in each layer
@@ -33,14 +33,118 @@ print('residual: ' + str(residual))
 print('nonlinearity: ' + str(nonlinearity))
 print('model: ' + str(model))
 
+def show(data, act):
+  print('Step-s = ', act)
+  print('***********************************************************************')
+  print(type(data))
+  print('=========')
+  print(data.shape)
+  print('=========')
+  print(data)
+  print('***********************************************************************')
+  print('Step-e = ', act)
+  # print(adj.shape)
+
+def show2(data, act):
+  print('Step-s = ', act)
+  print('***********************************************************************')
+  print(type(data))
+  print('=========')
+  print(np.size(data))
+  print('=========')
+  print(data)
+  print('=========')
+  print(type(data[0]))
+  print(data[0].shape)
+  print('=========')
+  print(type(data[1]))
+  print(data[1].shape)
+  print('=========')
+  print(type(data[2]))
+  print(np.size(data[2]))
+  print(data[2])
+  print('=========')
+  print('***********************************************************************')
+  print('Step-e = ', act)
+  # print(adj.shape)
+
+def show3(data, act):
+  print('Step-s = ', act)
+  print('***********************************************************************')
+  print(type(data))
+  print('=========')
+  print(np.size(data))
+  print('=========')
+  print(data)
+  print('=========')
+  print(type(data[0]))
+  print(np.size(data[0]))
+  print(data[0][0])
+  print(data[0][1])
+  print(data[0][2])
+  print('=========')
+  print('=========')
+  print('***********************************************************************')
+  print('Step-e = ', act)
+  
+
 adj, features, y_train, y_val, y_test, train_mask, val_mask, test_mask = process.load_data(dataset)
+show(features, 'features')
+# <class 'scipy.sparse.lil.lil_matrix'>
+# =========
+# (2708, 1433)
+# =========
+#   (0, 19) 1.0
+#   (0, 81) 1.0
+#   (0, 146)  1.0
+#   ...
+#   (2707, 1328)  1.0
+#   (2707, 1412)  1.0
+#   (2707, 1414)  1.0
+show(adj, 'adj')
+# <class 'scipy.sparse.csr.csr_matrix'>
+# =========
+# (2708, 2708)
+# =========
+#  (0, 633)  1
+#  (0, 1862) 1
+#  (0, 2582) 1
+#  ...
+#  (2707, 598) 1
+#  (2707, 1473)  1
+#  (2707, 2706)  1
 features, spars = process.preprocess_features(features)
+show(features, 'features')
+# dense type
+# <class 'numpy.matrix'>
+# =========
+# (2708, 1433)
+# =========
+# [[0. 0. 0. ... 0. 0. 0.]
+#  [0. 0. 0. ... 0. 0. 0.]
+#  [0. 0. 0. ... 0. 0. 0.]
+#  ...
+#  [0. 0. 0. ... 0. 0. 0.]
+#  [0. 0. 0. ... 0. 0. 0.]
+#  [0. 0. 0. ... 0. 0. 0.]]
 
 nb_nodes = features.shape[0]    # 2708
 ft_size = features.shape[1]     # 1433
 nb_classes = y_train.shape[1]   # 7
 
 adj = adj.todense()
+show(adj, 'adj')
+# <class 'numpy.matrix'>
+# =========
+# (2708, 2708)
+# =========
+# [[0 0 0 ... 0 0 0]
+#  [0 0 1 ... 0 0 0]
+#  [0 1 0 ... 0 0 0]
+#  ...
+#  [0 0 0 ... 0 0 0]
+#  [0 0 0 ... 0 0 1]
+#  [0 0 0 ... 0 1 0]]
 
 features = features[np.newaxis]
 adj = adj[np.newaxis]
