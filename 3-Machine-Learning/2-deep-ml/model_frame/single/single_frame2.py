@@ -22,12 +22,12 @@ def main(_):
   y = tf.matmul(x, W) + b						          # 推理操作
   y_ = tf.placeholder(tf.float32, [None, 10]) # 图像标签
   # 使用交叉熵作为损失值
-  loss = tf.nn.softmax_cross_entropy_with_logits(labels=y_, logits=y)
-  cross_entropy = tf.reduce_mean(loss)
+  cross_entropy_loss = tf.nn.softmax_cross_entropy_with_logits(labels=y_, logits=y)
+  cross_entropy_loss_mean = tf.reduce_mean(cross_entropy_loss)
   # 创建梯度下降优化器
   optimizer = tf.train.GradientDescentOptimizer(FLAGS.learning_rate)
   # 定义单步训练操作
-  train_op = optimizer.minimize(cross_entropy, global_step=global_steps)
+  train_op = optimizer.minimize(cross_entropy_loss_mean, global_step=global_steps)
   # 创建Saver
   saver = tf.train.Saver()
   sess = tf.InteractiveSession()
@@ -36,14 +36,19 @@ def main(_):
   for i in range(1000): 
     batch_xs, batch_ys = mnist.train.next_batch(100)
     sess.run(train_op, feed_dict={x: batch_xs, y_: batch_ys})
+    print('Global Step Start')
     print(sess.run(global_steps))
+    print('------y------')
     print(sess.run(y, feed_dict={x: batch_xs, y_: batch_ys}))
-    print(sess.run(loss, feed_dict={x: batch_xs, y_: batch_ys}))
-    print(sess.run(cross_entropy, feed_dict={x: batch_xs, y_: batch_ys}))
+    print('------cross_entropy_loss------')
+    print(sess.run(cross_entropy_loss, feed_dict={x: batch_xs, y_: batch_ys}))
+    print('------cross_entropy_loss_mean------')
+    print(sess.run(cross_entropy_loss_mean, feed_dict={x: batch_xs, y_: batch_ys}))
+    print('Global Step End')
      # 每100步保存一次模型参数
     if i % 100 == 0:
       # print(sess.run(global_steps))
-      # print(sess.run(cross_entropy, feed_dict={x: batch_xs, y_: batch_ys}))
+      # print(sess.run(cross_entropy_loss_mean, feed_dict={x: batch_xs, y_: batch_ys}))
       saver.save(sess, 'mnist.ckpt')
   correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
   accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
