@@ -1,0 +1,28 @@
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+
+a=tf.constant([1.0,3.0], name="xxxxxxxxx")
+#a=tf.constant([1.0,3.0])
+b=tf.constant([2.0,4.0])
+c=tf.add(a,b)
+d=tf.add(c,a)
+e=tf.add(d,b)
+
+with tf.Session() as sess:
+        print("************begin***************")
+        print("a[0]=%s, a[1]=%s" % (a[0].eval(), a[1].eval()))
+        print("a.name=%s" % (a.name))
+        print("b.name=%s" % (b.name))
+        print("a.op=\n[\n%s]" % (a.op))
+        print("a.consumers=%s" % (a.consumers()))
+        print("b.consumers=%s" % (b.consumers()))
+        print("c.name=%s" % (c.name))
+        print("c.shape=%s" % (c.shape))
+        print("c.value=%s" % (c.eval()))
+        print("c.op=\n[\n%s]" % (c.op))
+        print("***************************")
+        print("d.name=%s" %(d.name))
+        print("d.op=\n[\n%s]"  % (d.op))
+        print("***************************")
+        print("e.name=%s" % (e.name))
+        print("e.op=\n[\n%s]" % (e.op))
