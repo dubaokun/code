@@ -78,6 +78,7 @@ def main(unused_argv):
 
   if FLAGS.num_gpus > 0:
     # 假设每台机器的 GPU 数量都相同时，为每台机器的每个 GPU 依次分配一个计算任务。
+    # 如果是每台机器有多个GPU的时候，建立一个训练进行列表存储，训练的时候进行循环使用
     gpu = (FLAGS.task_index % FLAGS.num_gpus)
     worker_device = "/job:worker/task:%d/gpu:%d" % (FLAGS.task_index, gpu)
   elif FLAGS.num_gpus == 0:
