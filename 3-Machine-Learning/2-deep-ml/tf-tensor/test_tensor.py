@@ -1,19 +1,29 @@
 import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
+#import tensorflow as tf
 
 a=tf.constant([1.0,3.0], name="xxxxxxxxx")
 #a=tf.constant([1.0,3.0])
 b=tf.constant([2.0,4.0])
 c=tf.add(a,b)
 d=tf.add(c,a)
-e=tf.add(d,b)
+#e=tf.add(d,b)
+e=d+b
+a_1=tf.constant([[1.0 ,1.0], [1.0 ,1.0]])
+g=tf.matmul(a_1,a_1)
+f=tf.add(tf.matmul(a_1,a_1), a_1)
 
 with tf.Session() as sess:
         print("************begin***************")
         print("a[0]=%s, a[1]=%s" % (a[0].eval(), a[1].eval()))
         print("a.name=%s" % (a.name))
         print("b.name=%s" % (b.name))
+        print("a.shape=%s" % (a.shape))
+        print("b.shape=%s" % (b.shape))
         print("a.op=\n[\n%s]" % (a.op))
+        print("b.op=\n[\n%s]" % (b.op))
+        print("a.value_index=%s" % (a.value_index))
+        print("b.value_index=%s" % (b.value_index))
         print("a.consumers=%s" % (a.consumers()))
         print("b.consumers=%s" % (b.consumers()))
         print("c.name=%s" % (c.name))
@@ -26,3 +36,6 @@ with tf.Session() as sess:
         print("***************************")
         print("e.name=%s" % (e.name))
         print("e.op=\n[\n%s]" % (e.op))
+        print("************end***************")
+        print("f.name=%s" % (f.name))
+        print("f.op=\n[\n%s]" % (f.op))
