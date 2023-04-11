@@ -1,4 +1,5 @@
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 x = tf.constant([[1., 1.], [2., 2.]])
 y = tf.constant([[[1,1,1], [2,2,2]],[[3,3,3],[4,4,4]],[[5,5,5],[6,6,6]]], dtype
@@ -27,3 +28,19 @@ with tf.Session() as sess:
     print('a_2.shape=', a_2.shape)
     print(sess.run(a_2))
     print('=================================')
+
+
+'''
+y.shape= (3, 2, 3)
+a_0.shape= (2, 3)
+[[3. 3. 3.]
+ [4. 4. 4.]]
+a_1.shape= (3, 3)
+[[1.5 1.5 1.5]
+ [3.5 3.5 3.5]
+ [5.5 5.5 5.5]]
+a_2.shape= (3, 2)
+[[1. 2.]
+ [3. 4.]
+ [5. 6.]]
+'''

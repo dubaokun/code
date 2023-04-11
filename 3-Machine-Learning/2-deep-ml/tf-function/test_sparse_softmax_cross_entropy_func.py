@@ -1,4 +1,5 @@
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 labels_sparse = [1, 1, 0]
 labels_onehot = [[0, 1, 0], [0, 1, 0], [1, 0, 0]]
