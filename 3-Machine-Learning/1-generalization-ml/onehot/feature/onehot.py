@@ -8,5 +8,5 @@ encoder.fit([
     [1, 2, 4, 3]
 ])
 encoded_vector = encoder.transform([[2, 3, 5, 3]]).toarray()
-print("\n Encoded vector =", encoded_vector)
+print("\n Encoded vector = ", encoded_vector, "\n")
 
